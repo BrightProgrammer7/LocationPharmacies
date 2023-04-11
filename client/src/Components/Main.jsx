@@ -55,16 +55,16 @@ const Main = () => {
                 const options = data.map(item => ({ value: item._id, label: item.name }));
                 dispatch({type: 'SET_CITIES', payload: options});
             })
-            .catch(error => console.error(error));
+            .catch(error => console.log(error));
 
-        fetch(`${URL}/api/zones`)
+        state.city && fetch(`${URL}/api/cities/${state.city.value}/zones`)
             .then(response => response.json())
             .then(data => {
                 const options = data.map(item => ({ value: item._id, label: item.name }));
                 dispatch({type: 'SET_ZONES', payload: options});
             })
             .catch(error => console.error(error));
-    }, []);
+    }, [state.city]);
 
 
     const isCity = !state.city;
