@@ -6,7 +6,7 @@ import Cards from './Cards';
 import Map from './Map';
 
 const gardeData = [
-    { vale: 'jour', label: 'Jour' },
+    { value: 'jour', label: 'Jour' },
     { value: 'nuit', label: 'Nuit' },
 ]
 
@@ -42,7 +42,7 @@ function reducer(state, action) {
 }
 
 
-const Main = () => {
+const Main = ({networkStatus}) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [pharmacies, setPharmacies] = useState(null);
     const [getData, setGetData] = useState(false);
@@ -74,6 +74,7 @@ const Main = () => {
     const handleCityChange = data => {
         dispatch({type: 'SET_CITY', payload: data});
         dispatch({type: 'SET_ZONE', payload: null});
+        dispatch({type: 'SET_GARDE', payload: null});
         setGetData(false);
     };
 
@@ -89,6 +90,8 @@ const Main = () => {
     const handleGetPharmacies = data => {
         setLoading(true);
         // get pharmacies from mongodb
+        console.log("grade: ", state.garde);
+
         fetch(`${URL}/api/pharmacies/${state.garde.value}/${state.zone.value}/${state.city.value}`)
             .then(response => response.json())
             .then(data => {
@@ -115,6 +118,11 @@ const Main = () => {
         setGetData(false);
 
     }
+
+    if(networkStatus){
+        return "Network Lost!";
+    }
+
     return(
         <div>
             <div className='d-flex justify-content-center'>

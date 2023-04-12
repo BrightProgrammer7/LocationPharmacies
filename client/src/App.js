@@ -1,3 +1,4 @@
+import { Offline, Online } from "react-detect-offline";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './App.css';
@@ -7,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Components/Header';
 import Main from './Components/Main';
 import FooterComponent from './Components/Footer';
+import NetworkLost from './Components/NetworkLost';
 
 import Contact from './pages/Contact';
 import About from './pages/About';
@@ -20,16 +22,19 @@ function App() {
         <Header />
       </div>
       <div className='container mainApp my-3 py-3 flex-fill'>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/">
-              <Route index element={<Main />} />
-              <Route path="about" element={<About />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="*" element={<NoPage />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        {/* <Offline><NetworkLost/></Offline> */}
+        {/* <Online> */}
+          <BrowserRouter>
+            <Routes>
+              <Route path="/">
+                <Route index element={<Main/>} />
+                <Route path="about" element={<About />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="*" element={<NoPage />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        {/* </Online> */}
       </div>
       <FooterComponent />
     </div>
