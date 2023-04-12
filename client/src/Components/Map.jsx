@@ -26,9 +26,8 @@ const Map = (props) => {
                     />
                     {
                         props.data.map((item => {
-                            console.log(item);
                             return(
-                                <Marker position={[item.latitude, item.longitude]}>
+                                <Marker key={item._id} position={[item.latitude, item.longitude]}>
                                     <Popup>
                                         <p>
                                             <strong>Nom:</strong> {item.name}

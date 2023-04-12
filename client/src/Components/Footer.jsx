@@ -19,7 +19,7 @@ const FooterComponent = () => {
                     </div>
                 </div>
                 <div className="col-12 col-sm-6 py-3">
-                    <div className='d-flex justify-content-center'>
+                    <div className='d-flex'>
                         <ul>
                             <li><FaFacebook/> <a href="#">Facebook</a></li>
                             <li><FaInstagram /> <a href="#">Twitter</a></li>

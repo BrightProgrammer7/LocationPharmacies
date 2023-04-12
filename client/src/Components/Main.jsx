@@ -56,7 +56,7 @@ const Main = ({networkStatus}) => {
                 dispatch({type: 'SET_CITIES', payload: options});
             })
             .catch(error => console.log(error));
-        
+
         state.city && fetch(`${URL}/api/cities/${state.city.value}/zones`)
             .then(response => response.json())
             .then(data => {
@@ -64,6 +64,7 @@ const Main = ({networkStatus}) => {
                 dispatch({type: 'SET_ZONES', payload: options});
             })
             .catch(error => console.error(error));
+        console.log("hi");
     }, [state.city]);
 
 
@@ -76,6 +77,7 @@ const Main = ({networkStatus}) => {
         dispatch({type: 'SET_ZONE', payload: null});
         dispatch({type: 'SET_GARDE', payload: null});
         setGetData(false);
+        setPharmacies(null);
     };
 
     const handleZoneChange = data => {
@@ -121,8 +123,8 @@ const Main = ({networkStatus}) => {
 
     return(
         <div>
-            <div className='d-flex justify-content-center'>
-                <div className='mx-3 flex-grow-1'>
+            <div className='d-flex justify-content-center myMain'>
+                <div className='mx-3 flex-grow-1 itms'>
                     <Select
                         options={state.cities}
                         defaultValue={defaultCity}
@@ -130,7 +132,7 @@ const Main = ({networkStatus}) => {
                         onChange={handleCityChange}
                     />
                 </div>
-                <div className='mx-3 flex-grow-1'>
+                <div className='mx-3 flex-grow-1 itms'>
                     <Select 
                         options={state.zones} 
                         defaultValue={defaultZone}
@@ -139,7 +141,7 @@ const Main = ({networkStatus}) => {
                         isDisabled={isCity}
                     />
                 </div>
-                <div className='mx-3 flex-grow-1'>
+                <div className='mx-3 flex-grow-1 itms'>
                     <Select 
                         options={gardeData} 
                         defaultValue={defaultGarde}
@@ -148,7 +150,7 @@ const Main = ({networkStatus}) => {
                         isDisabled={isZone}
                     />
                 </div>
-                <div className='mx-3'>
+                <div className='mx-3 itms'>
                     <Button 
                         onClick={handleGetPharmacies} 
                         variant="outline-primary"

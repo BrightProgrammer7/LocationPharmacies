@@ -42,6 +42,16 @@
   box-shadow: 1px 1px 7px #abaaaa;
 }
 
+@media (max-width: 767px) {
+  .myMain{
+    display: flex;
+    flex-direction: column;
+  }
+  .myMain .itms{
+    margin: 5px 0px;
+  }
+}
+
 .footer_container{
   background-color: rgba(248,249,250);
 }
