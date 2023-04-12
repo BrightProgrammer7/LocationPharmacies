@@ -11,11 +11,11 @@ function Cards({data}) {
         <Carousel cols={3} rows={3} gap={10} loop scrollSnap={true}>
         { data.map((item) => {
             return(
-                <Carousel.Item>
-                    <Card key={item._id} style={{ width: '18rem', margin: '5px' }}>
+                <Carousel.Item key={item._id}>
+                    <Card style={{ width: '18rem', margin: '5px' }}>
                         <Carousel cols={1} rows={1} gap={0} autoplay={2000} loop scrollSnap={true}>
                             {item.images.map((img) => (
-                                    <Carousel.Item>
+                                    <Carousel.Item key={img._id}>
                                         <Card.Img className="mt-3" variant="top" src={ ImgPath + img.url} />
                                     </Carousel.Item>
                                 )

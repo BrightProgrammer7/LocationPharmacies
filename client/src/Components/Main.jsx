@@ -47,25 +47,26 @@ const Main = ({networkStatus}) => {
     const [pharmacies, setPharmacies] = useState(null);
     const [getData, setGetData] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [loadingCites, setLoadingCites] = useState(false);
 
     useEffect(() => {
+        setLoadingCites(true);
         fetch(`${URL}/api/cities`)
             .then(response => response.json())
             .then(data => {
-                const options = data?.map(item => ({ value: item._id, label: item.name }));
+                const options = data.map(item => ({ value: item._id, label: item.name }));
                 dispatch({type: 'SET_CITIES', payload: options});
             })
-            .catch(error => console.log(error));
+            .catch(error => console.err("err: ", error));
 
         state.city && fetch(`${URL}/api/cities/${state.city.value}/zones`)
             .then(response => response.json())
             .then(data => {
-                const options = data?.map(item => ({ value: item._id, label: item.name }));
+                const options = data.map(item => ({ value: item._id, label: item.name }));
                 dispatch({type: 'SET_ZONES', payload: options});
             })
             .catch(error => console.error(error));
-        console.log("hi");
-    }, [state.city]);
+    }, [state.city, state.zone, state.garde]);
 
 
     const isCity = !state.city;
@@ -91,9 +92,7 @@ const Main = ({networkStatus}) => {
 
     const handleGetPharmacies = data => {
         setLoading(true);
-        // get pharmacies from mongodb
-        console.log("grade: ", state.garde);
-
+        console.log(`${URL}/api/pharmacies/${state.garde.value}/${state.zone.value}/${state.city.value}`)
         fetch(`${URL}/api/pharmacies/${state.garde.value}/${state.zone.value}/${state.city.value}`)
             .then(response => response.json())
             .then(data => {
@@ -104,7 +103,7 @@ const Main = ({networkStatus}) => {
                     dispatch({type: 'SET_CITY', payload: null});
                     dispatch({type: 'SET_ZONE', payload: null});
                     dispatch({type: 'SET_GARDE', payload: null});
-                    console.log("empty");
+                    setPharmacies(null);
                 }
                 setLoading(false);
                 setGetData(true);
@@ -126,15 +125,16 @@ const Main = ({networkStatus}) => {
             <div className='d-flex justify-content-center myMain'>
                 <div className='mx-3 flex-grow-1 itms'>
                     <Select
-                        options={state.cities}
+                        options={state.cities || []}
                         defaultValue={defaultCity}
                         value={state.city}
                         onChange={handleCityChange}
+                        isDisbaled={loadingCites}
                     />
                 </div>
                 <div className='mx-3 flex-grow-1 itms'>
                     <Select 
-                        options={state.zones} 
+                        options={state.zones || []}
                         defaultValue={defaultZone}
                         value={state.zone}
                         onChange={handleZoneChange}
@@ -142,8 +142,8 @@ const Main = ({networkStatus}) => {
                     />
                 </div>
                 <div className='mx-3 flex-grow-1 itms'>
-                    <Select 
-                        options={gardeData} 
+                    <Select
+                        options={gardeData}
                         defaultValue={defaultGarde}
                         value={state.garde}
                         onChange={handleGardeChange}
