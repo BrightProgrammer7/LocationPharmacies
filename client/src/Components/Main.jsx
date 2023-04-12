@@ -52,19 +52,19 @@ const Main = ({networkStatus}) => {
         fetch(`${URL}/api/cities`)
             .then(response => response.json())
             .then(data => {
-                const options = data.map(item => ({ value: item._id, label: item.name }));
+                const options = data?.map(item => ({ value: item._id, label: item.name }));
                 dispatch({type: 'SET_CITIES', payload: options});
             })
             .catch(error => console.log(error));
-
+        
         state.city && fetch(`${URL}/api/cities/${state.city.value}/zones`)
             .then(response => response.json())
             .then(data => {
-                const options = data.map(item => ({ value: item._id, label: item.name }));
+                const options = data?.map(item => ({ value: item._id, label: item.name }));
                 dispatch({type: 'SET_ZONES', payload: options});
             })
             .catch(error => console.error(error));
-    }, [state.city]);
+    }, [state.cities, state.zones, state.city]);
 
 
     const isCity = !state.city;
@@ -117,10 +117,6 @@ const Main = ({networkStatus}) => {
         setPharmacies(null);
         setGetData(false);
 
-    }
-
-    if(networkStatus){
-        return "Network Lost!";
     }
 
     return(

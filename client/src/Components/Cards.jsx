@@ -12,7 +12,6 @@ function Cards({data}) {
             return(
                 <Carousel.Item>
                     <Card key={item._id} style={{ width: '18rem', margin: '5px' }}>
-                        {/* <Card.Img variant="top" src={logo} /> */}
                         <Carousel cols={1} rows={1} gap={0} loop>
                             <Carousel.Item>
                                 <Card.Img variant="top" src={logo} />

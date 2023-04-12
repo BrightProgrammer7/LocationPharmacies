@@ -22,8 +22,8 @@ function App() {
         <Header />
       </div>
       <div className='container mainApp my-3 py-3 flex-fill'>
-        {/* <Offline><NetworkLost/></Offline> */}
-        {/* <Online> */}
+        <Offline><NetworkLost/></Offline>
+        <Online>
           <BrowserRouter>
             <Routes>
               <Route path="/">
@@ -34,7 +34,7 @@ function App() {
               </Route>
             </Routes>
           </BrowserRouter>
-        {/* </Online> */}
+        </Online>
       </div>
       <FooterComponent />
     </div>
