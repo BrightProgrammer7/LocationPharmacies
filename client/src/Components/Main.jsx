@@ -64,7 +64,7 @@ const Main = ({networkStatus}) => {
                 dispatch({type: 'SET_ZONES', payload: options});
             })
             .catch(error => console.error(error));
-    }, [state.cities, state.zones, state.city]);
+    }, [state.city]);
 
 
     const isCity = !state.city;

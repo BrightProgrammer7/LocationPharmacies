@@ -2,7 +2,8 @@ import Card from 'react-bootstrap/Card';
 import Carousel from 'better-react-carousel'
 
 
-import logo from '../assets/images/logo.png';
+// import logo from '../assets/images/logo.png';
+const ImgPath = `${process.env.PUBLIC_URL}/images/`;
 
 function Cards({data}) {
   return (
@@ -13,15 +14,12 @@ function Cards({data}) {
                 <Carousel.Item>
                     <Card key={item._id} style={{ width: '18rem', margin: '5px' }}>
                         <Carousel cols={1} rows={1} gap={0} loop>
-                            <Carousel.Item>
-                                <Card.Img variant="top" src={logo} />
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <Card.Img variant="top" src={logo} />
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <Card.Img variant="top" src={logo} />
-                            </Carousel.Item>
+                            {item.images.map((img) => (
+                                    <Carousel.Item>
+                                        <Card.Img variant="top" src={ ImgPath + img.url} />
+                                    </Carousel.Item>
+                                )
+                            )}
                         </Carousel>
                         <Card.Body>
                             <Card.Title>{item.name}</Card.Title>
