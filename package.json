@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --ignore client ./bin/www"
+     "start": "node --ignore client ./bin/www",
+            "dev": "nodemon --ignore client ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
