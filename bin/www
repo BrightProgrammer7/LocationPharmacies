@@ -29,7 +29,7 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-mongoose.connect('mongodb+srv://ay0ub:ayoub@cluster0.casrqv3.mongodb.net/citiesManagement?retryWrites=true&w=majority').then(result => {
+mongoose.connect('mongodb+srv://admin:root@pharmamanagement.o0f7ixd.mongodb.net/?retryWrites=true&w=majority').then(result => {
   console.log('successfully connected');
   // const c = new City({
   //   name: 'hello'
