@@ -10,7 +10,7 @@ const gardeData = [
     { value: 'nuit', label: 'Nuit' },
 ]
 
-const URL = 'https://calm-puce-fawn-kit.cyclic.app';
+const URL = 'https://frightened-fez-cow.cyclic.app';
 
 const defaultCity = { value: "city", label: "Select City" };
 const defaultZone = { value: "zone", label: "Select City" };
