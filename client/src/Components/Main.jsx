@@ -57,7 +57,7 @@ const Main = ({ networkStatus }) => {
                 const options = data.map(item => ({ value: item._id, label: item.name }));
                 dispatch({ type: 'SET_CITIES', payload: options });
             })
-            .catch(error => console.err("err: ", error));
+            .catch(error => console.error(error));
 
         state.city && fetch(`${URL}/api/cities/${state.city.value}/zones`)
             .then(response => response.json())
