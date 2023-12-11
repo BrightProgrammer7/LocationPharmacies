@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-     "start": "node --ignore client ./bin/www",
-            "dev": "nodemon --ignore client ./bin/www"
+    "start": "node --ignore client ./bin/www",
+    "dev": "nodemon --ignore client ./bin/www",
+    "build": "npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
