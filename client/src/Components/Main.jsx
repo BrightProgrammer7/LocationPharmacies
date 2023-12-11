@@ -10,7 +10,7 @@ const gardeData = [
     { value: 'nuit', label: 'Nuit' },
 ]
 
-const URL = 'https://frightened-fez-cow.cyclic.app:9000';
+const URL = 'https://pharma-tldq.onrender.com';
 
 const defaultCity = { value: "city", label: "Select City" };
 const defaultZone = { value: "zone", label: "Select City" };
